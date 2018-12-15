@@ -1,6 +1,4 @@
-
-
-
+//connect to Github API
 let https = require('https')
 
 const options = {
@@ -11,8 +9,6 @@ const options = {
 	headers: {
 		'user-agent' : 'MuktiDJ'
 	}
-	//port itu sebuah channel untuk yg digunakan oleh bbrp LAN untuk berkomunikasi
-	//http itu portnya 880 https 443
 }
 
 //TODO: [x]Read the data
@@ -22,13 +18,14 @@ let request = https.request(options, (response) => {
 		body = body + data
 	})
 	response.on('end', () => {
-		// TODO: [] Parse the data
+		// TODO: [x] Parse the data
 		// convert String to JSON (JavaScript object)
 		let profile = JSON.parse(body)
-		console.log(profile.avatar_url)
+		// console.log(profile.login + ' owns ' + profile.public_repos + ' repo(s) ')
+
+		// TODO: [x] Print the data out
+		console.log(`${profile.login} owns ${profile.public_repos} repo(s) and has ${profile.followers} followers(s)`)
 	})
-	
-	// TODO: [] Print the da ta out
 })
 
 request.end()

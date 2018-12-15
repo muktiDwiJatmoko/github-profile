@@ -14,11 +14,19 @@ const options = {
 	//port itu sebuah channel untuk yg digunakan oleh bbrp LAN untuk berkomunikasi
 	//http itu portnya 880 https 443
 }
-let request = https.request(options, (result) => {
-	console.log('Got response: ', result.statusCode) 
-	//statusCode itu adalah status code dari http, ketika minta sesuatu status codenya 200 berjalan lancar
 
-	//output: 403 , 403 itu forbiden
+//TODO: [x]Read the data
+let request = https.request(options, (response) => {
+	let body = ''
+	response.on('data', (data) => {
+		body = body + data
+	})
+	response.on('end', () => {
+		console.log(typeof body)
+	})
+	// TODO: [] Parse the data
+	// convert String to JSON (JavaScript object)
+	// TODO: [] Print the da ta out
 })
 
 request.end()
